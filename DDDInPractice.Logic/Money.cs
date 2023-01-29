@@ -31,12 +31,12 @@ public sealed class Money : ValueObject<Money>
         TwentyDollarCount = twentyDollarCount;
     }
 
-    public int OneCentCount { get;}
-    public int TenCentCount { get;}
-    public int QuarterCentCount { get;}
-    public int OneDollarCount { get;}
-    public int FiveDollarCount { get;}
-    public int TwentyDollarCount { get;}
+    public int OneCentCount { get; }
+    public int TenCentCount { get; }
+    public int QuarterCentCount { get; }
+    public int OneDollarCount { get; }
+    public int FiveDollarCount { get; }
+    public int TwentyDollarCount { get; }
     public decimal Amount =>
         OneCentCount * 0.01m +
         TenCentCount * 0.10m +
@@ -55,6 +55,17 @@ public sealed class Money : ValueObject<Money>
             && TwentyDollarCount == other.TwentyDollarCount;
     }
 
+    public static Money operator -(Money money1, Money money2)
+    {
+        return new Money(
+            money1.OneCentCount - money2.OneCentCount,
+            money1.TenCentCount - money2.TenCentCount,
+            money1.QuarterCentCount - money2.QuarterCentCount,
+            money1.OneDollarCount - money2.OneDollarCount,
+            money1.FiveDollarCount - money2.FiveDollarCount,
+            money1.TwentyDollarCount - money2.TwentyDollarCount);
+    }
+
     protected override int GetHashCodeCore()
     {
         unchecked
@@ -65,7 +76,7 @@ public sealed class Money : ValueObject<Money>
             hashCode = (hashCode * 397) ^ OneDollarCount;
             hashCode = (hashCode * 397) ^ FiveDollarCount;
             hashCode = (hashCode * 397) ^ TwentyDollarCount;
-            
+
             return hashCode;
         }
     }

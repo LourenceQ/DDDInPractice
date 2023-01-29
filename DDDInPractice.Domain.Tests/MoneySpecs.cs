@@ -8,7 +8,6 @@ public class MoneySpecs
     [Fact]
     public void Sum_of_tow_moneys_produces_correct_result()
     {
-
         Money money1 = new Money(1, 2, 3, 4, 5, 6);
         Money money2 = new Money(1, 2, 3, 4, 5, 6);
 
@@ -88,4 +87,35 @@ public class MoneySpecs
 
         money.Amount.Should().Equals(expectedAmount);
     }
+
+    [Fact]
+    public void Subtraction_of_two_money_produce_corect_result()
+    {
+        Money money1 = new Money(10, 10, 10, 10, 10, 10);
+        Money money2 = new Money(1, 2, 3, 4, 5, 6);
+
+        Money res = money1 - money2;
+
+        res.OneCentCount.Should().Be(9);
+        res.TenCentCount.Should().Be(8);
+        res.QuarterCentCount.Should().Be(7);
+        res.OneDollarCount.Should().Be(6);
+        res.FiveDollarCount.Should().Be(5);
+        res.TwentyDollarCount.Should().Be(4);
+    }
+
+    [Fact]
+    public void Cannot_subtracts_more_than_exists()
+    {
+        Money money1 = new Money(0, 1, 0, 0, 0, 0);
+        Money money2 = new Money(1, 0, 0, 0, 0, 0);
+
+        Action action = () =>
+        {
+            Money mony = money1 - money2;
+        };
+
+        action.Should().Throw<InvalidOperationException>();
+    }
+
 }
