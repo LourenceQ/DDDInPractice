@@ -5,6 +5,24 @@ public sealed class Money : ValueObject<Money>
     public Money(int oneCentCount, int tenCentCount, int quarterCentCount, int oneDollarCount
                 , int fiveDollarCount, int twentyDollarCount)
     {
+        if (oneCentCount < 0)
+            throw new InvalidOperationException();
+
+        if (tenCentCount < 0)
+            throw new InvalidOperationException();
+
+        if (quarterCentCount < 0)
+            throw new InvalidOperationException();
+
+        if (oneDollarCount < 0)
+            throw new InvalidOperationException();
+
+        if (fiveDollarCount < 0)
+            throw new InvalidOperationException();
+
+        if (twentyDollarCount < 0)
+            throw new InvalidOperationException();
+
         OneCentCount = oneCentCount;
         TenCentCount = tenCentCount;
         QuarterCentCount = quarterCentCount;
@@ -13,12 +31,19 @@ public sealed class Money : ValueObject<Money>
         TwentyDollarCount = twentyDollarCount;
     }
 
-    public int OneCentCount { get; private set; }
-    public int TenCentCount { get; private set; }
-    public int QuarterCentCount { get; private set; }
-    public int OneDollarCount { get; private set; }
-    public int FiveDollarCount { get; private set; }
-    public int TwentyDollarCount { get; private set; }
+    public int OneCentCount { get;}
+    public int TenCentCount { get;}
+    public int QuarterCentCount { get;}
+    public int OneDollarCount { get;}
+    public int FiveDollarCount { get;}
+    public int TwentyDollarCount { get;}
+    public decimal Amount =>
+        OneCentCount * 0.01m +
+        TenCentCount * 0.10m +
+        QuarterCentCount * 0.25m +
+        OneDollarCount +
+        FiveDollarCount * 5 +
+        TwentyDollarCount * 20;
 
     protected override bool EqualsCore(Money other)
     {
