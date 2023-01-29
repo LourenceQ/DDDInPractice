@@ -5,23 +5,34 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{41BF12C7-32FA-487B-8D21-070B687A89CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDInPractice.Logic", "DDDInPractice.Logic\DDDInPractice.Logic.csproj", "{7C4FD485-1E49-4483-A55D-DEE35E6327C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDInPractice.Logic", "DDDInPractice.Logic\DDDInPractice.Logic.csproj", "{7C4FD485-1E49-4483-A55D-DEE35E6327C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain.Tests", "Domain.Tests", "{B13DE669-A888-46D5-94FA-4BF3A90618A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDInPractice.Domain.Tests", "DDDInPractice.Domain.Tests\DDDInPractice.Domain.Tests.csproj", "{B60D203A-26D8-462D-AEDC-8FA7BA4646D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7C4FD485-1E49-4483-A55D-DEE35E6327C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C4FD485-1E49-4483-A55D-DEE35E6327C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C4FD485-1E49-4483-A55D-DEE35E6327C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C4FD485-1E49-4483-A55D-DEE35E6327C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B60D203A-26D8-462D-AEDC-8FA7BA4646D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60D203A-26D8-462D-AEDC-8FA7BA4646D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60D203A-26D8-462D-AEDC-8FA7BA4646D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60D203A-26D8-462D-AEDC-8FA7BA4646D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7C4FD485-1E49-4483-A55D-DEE35E6327C1} = {41BF12C7-32FA-487B-8D21-070B687A89CC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCAB5B07-3B92-453D-AC07-46D06EF085D8}
 	EndGlobalSection
 EndGlobal
