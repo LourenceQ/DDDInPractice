@@ -1,8 +1,9 @@
 namespace DDDInPractice.Logic;
 
-public sealed class Money
+public sealed class Money : ValueObject<Money>
 {
-    public Money(int oneCentCount, int tenCentCount, int quarterCentCount, int oneDollarCount, int fiveDollarCount, int twentyDollarCount)
+    public Money(int oneCentCount, int tenCentCount, int quarterCentCount, int oneDollarCount
+                , int fiveDollarCount, int twentyDollarCount)
     {
         OneCentCount = oneCentCount;
         TenCentCount = tenCentCount;
@@ -18,6 +19,31 @@ public sealed class Money
     public int OneDollarCount { get; private set; }
     public int FiveDollarCount { get; private set; }
     public int TwentyDollarCount { get; private set; }
+
+    protected override bool EqualsCore(Money other)
+    {
+        return OneCentCount == other.OneCentCount
+            && TenCentCount == other.TenCentCount
+            && QuarterCentCount == other.QuarterCentCount
+            && OneDollarCount == other.OneDollarCount
+            && FiveDollarCount == other.FiveDollarCount
+            && TwentyDollarCount == other.TwentyDollarCount;
+    }
+
+    protected override int GetHashCodeCore()
+    {
+        unchecked
+        {
+            int hashCode = OneCentCount;
+            hashCode = (hashCode * 397) ^ TenCentCount;
+            hashCode = (hashCode * 397) ^ QuarterCentCount;
+            hashCode = (hashCode * 397) ^ OneDollarCount;
+            hashCode = (hashCode * 397) ^ FiveDollarCount;
+            hashCode = (hashCode * 397) ^ TwentyDollarCount;
+            
+            return hashCode;
+        }
+    }
 
     public static Money operator +(Money money1, Money money2)
     {
