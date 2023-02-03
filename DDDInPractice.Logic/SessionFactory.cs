@@ -1,7 +1,9 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Helpers;
+using FluentNHibernate.Conventions.Instances;
 using NHibernate;
 using System.Reflection;
 
@@ -34,5 +36,22 @@ internal static class SessionFactory
                 .Conventions.Add<HiLoConvention>());
 
         return configuration.BuildSessionFactory();
+    }
+
+    public class TableNameConvention : IClassConvention
+    {
+        public void Apply(IClassInstance instance)
+        {
+            instance.Table("[dbo].[" + instance.EntityType.Name + "]");
+        }
+    }
+
+    public class HiLoConvention : IIdConvention
+    {
+        public void Apply(IIdentityInstance instance)
+        {
+            instance.Column(instance.EntityType.Name + "ID");
+            instance.GeneratedBy.HiLo("[dbo].[Ids]", "NextHigh", "9", "EntityName = '" + instance.EntityType.Name + "'");
+        }
     }
 }
