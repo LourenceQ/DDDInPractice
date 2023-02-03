@@ -9,11 +9,11 @@ using System.Reflection;
 
 namespace DDDInPractice.Logic;
 
-internal static class SessionFactory
+public static class SessionFactory
 {
     public static ISessionFactory _factory;
 
-    internal static ISession OpenSession()
+    public static ISession OpenSession()
     {
         return _factory.OpenSession();
     }

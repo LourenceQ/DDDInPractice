@@ -3,7 +3,7 @@ namespace DDDInPractice.Logic;
 public sealed class Money : ValueObject<Money>
 {
     public Money(int oneCentCount, int tenCentCount, int quarterCentCount, int oneDollarCount
-                , int fiveDollarCount, int twentyDollarCount)
+                , int fiveDollarCount, int twentyDollarCount) : this()
     {
         if (oneCentCount < 0)
             throw new InvalidOperationException();
@@ -29,6 +29,10 @@ public sealed class Money : ValueObject<Money>
         OneDollarCount = oneDollarCount;
         FiveDollarCount = fiveDollarCount;
         TwentyDollarCount = twentyDollarCount;
+    }
+
+    public Money()
+    {
     }
 
     public int OneCentCount { get; }
