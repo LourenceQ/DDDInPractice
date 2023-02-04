@@ -9,7 +9,5 @@ public class SnackMachineSpecs
     {
         var snackMachine = new SnackMachine();
         snackMachine.InsertMoney(new Money(0, 0, 0, 1, 0, 0));
-
-
     }
 }
