@@ -1,30 +1,34 @@
-﻿namespace DDDInPractice.Logic;
+﻿using System;
+using System.Linq;
+
+namespace DDDInPractice.Logic;
 
 public class SnackMachine : Entity
 {
-    public virtual Money MoneyInside { get; protected set; }
-    public virtual Money MoneyInTransaction { get; protected set; }
-    public void InsertMoney(Money money)
+
+    public virtual Money MoneyInside { get; protected set; } = None;
+    public virtual Money MoneyInTransaction { get; protected set; } = None;
+
+    public virtual void InsertMoney(Money money)
     {
-        /*Money[] coinsAndNotes =
+        Money[] coinsAndNotes =
         {
-            Cent, TenCent, Quarter, Dollar, FiveDollar, TwentyDollar
-        };
+                Cent, TenCent, Quarter, Dollar, FiveDollar, TwentyDollar
+         };
         if (!coinsAndNotes.Contains(money))
-            throw new InvalidOperationException();*/
+            throw new InvalidOperationException();
 
         MoneyInTransaction += money;
     }
-    
-    public void ReturnMoney()
+
+    public virtual void ReturnMoney()
     {
-        //MoneyInTransaction = 0;
+        MoneyInTransaction = None;
     }
 
-    public void BuySnack()
+    public virtual void BuySnack()
     {
         MoneyInside += MoneyInTransaction;
-        
-        //MoneyInTransaction = 0;
+        MoneyInTransaction = None;
     }
 }
